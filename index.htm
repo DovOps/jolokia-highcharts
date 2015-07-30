@@ -1,0 +1,33 @@
+<html>
+ <body>
+  <div id="chart" />
+ 
+  <script src="./js/jquery/jquery-2.1.4.js"></script>
+  <script src="./js/highcharts.js"></script>
+  <script src="./js/jolokia/jolokia.js"></script>
+  <script src="./js/jolokia/jolokia-simple.js"></script>
+  <script src="./js/jolokiaChart.js"></script>
+
+  <div id="chart1" />
+  <script id="source" language="javascript" type="text/javascript">
+$(document).ready(
+	jolokiaChart("http://localhost:8080/jolokia-war-1.3.1", //URL
+				 3000, //interval
+				 'chart1', //css selector
+				 'spline', //graph type
+				 30, //series length
+				 "java.lang:type=Memory", //mbean type
+				 "HeapMemoryUsage", //mbean name
+				 "used") //mbean path
+);
+  </script>
+
+  <div id="chart2" />
+  <script id="source" language="javascript" type="text/javascript">
+$(document).ready(
+	jolokiaChart("http://localhost:8080/jolokia-war-1.3.1", 3000, 'chart2', 'spline', 30, "java.lang:type=Memory", "NonHeapMemoryUsage", "used")
+);
+  </script>
+
+ </body>
+</html>
